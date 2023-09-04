@@ -158,3 +158,13 @@ C:\Users\admin\Desktop\BackEnd\BackEnd\E-Learning.API\obj\Debug\net7.0\scopedcss
 C:\Users\admin\Desktop\BackEnd\BackEnd\E-Learning.API\obj\Debug\net7.0\E-Learning.API.csproj.CopyComplete
 C:\Users\admin\Desktop\BackEnd\BackEnd\E-Learning.API\obj\Debug\net7.0\E-Learning.API.genruntimeconfig.cache
 C:\Users\admin\Desktop\BackEnd\BackEnd\E-Learning.API\obj\Debug\net7.0\ref\E-Learning.API.dll
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\E-Learning.API.csproj.AssemblyReference.cache
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\E-Learning.API.GeneratedMSBuildEditorConfig.editorconfig
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\E-Learning.API.AssemblyInfoInputs.cache
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\E-Learning.API.AssemblyInfo.cs
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\E-Learning.API.csproj.CoreCompileInputs.cache
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\E-Learning.API.MvcApplicationPartsAssemblyInfo.cs
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\E-Learning.API.MvcApplicationPartsAssemblyInfo.cache
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\E-Learning.API.dll
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\refint\E-Learning.API.dll
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.API\obj\Debug\net7.0\E-Learning.API.pdb

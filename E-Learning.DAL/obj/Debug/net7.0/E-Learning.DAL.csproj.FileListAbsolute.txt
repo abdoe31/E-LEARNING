@@ -26,3 +26,6 @@ C:\Users\admin\Desktop\BackEnd\BackEnd\E-Learning.DAL\obj\Debug\net7.0\refint\E-
 C:\Users\admin\Desktop\BackEnd\BackEnd\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.pdb
 C:\Users\admin\Desktop\BackEnd\BackEnd\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.genruntimeconfig.cache
 C:\Users\admin\Desktop\BackEnd\BackEnd\E-Learning.DAL\obj\Debug\net7.0\ref\E-Learning.DAL.dll
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.dll
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\refint\E-Learning.DAL.dll
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.pdb

@@ -9,6 +9,5 @@ namespace E_Learning.BL;
 
 public class GetLecturetowatchDto
 {
-    public string
 
 }
