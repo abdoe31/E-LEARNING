@@ -17,6 +17,9 @@ public partial class UserLecture
     public DateTime? End { get; set; }
 
     public bool QuizRequired { get; set; }
+    public bool QuizSolved { get; set; }
+    public bool AssighmentSolved { get; set; }
+
 
     public int? Duration { get; set; }
 

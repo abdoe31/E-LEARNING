@@ -20,6 +20,9 @@ namespace E_Learning.BL
 
         public int  Lectureid { get; set; }
         public int  NumberofCode { get; set; }
+        public bool QuizRequird { get; set; }
+        public int duration { get; set; }
+
 
     }
 

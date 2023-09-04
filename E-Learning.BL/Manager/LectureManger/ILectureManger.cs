@@ -27,7 +27,10 @@ public interface ILectureManger
 
     UsersCLass  GetLectureWithUsers(int   Userid);
 
+    int AcessLectureByCode (string code , string userid);
 
 
+    StartendLecture startWatching(int userLectureid);
+    List<GetLecturetowatchDto> getLecturetowatch(string userid);
 
 }

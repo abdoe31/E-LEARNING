@@ -160,5 +160,38 @@ namespace E_Learning.API.Controllers
         }
 
 
+
+        [HttpPost("startWatching/{userLectureid}")]
+
+
+        public IActionResult startWatching(int userLectureid)
+        {
+
+
+
+
+          return Ok(_LectureManger.startWatching(userLectureid));
+
+        }
+
+
+        [HttpPost("getLecturetowatch/{userid}")]
+
+
+        public IActionResult getLecturetowatch(string userid)
+        {
+
+
+            if (!string.IsNullOrEmpty(userid))
+            {
+
+                return BadRequest();
+            }
+
+            return Ok(_LectureManger.getLecturetowatch(userid));
+
+        }
+
+
     }
 }

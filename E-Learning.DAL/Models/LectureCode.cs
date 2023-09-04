@@ -13,10 +13,12 @@ public partial class LectureCode
     public string? StudentId { get; set; }
 
     public string? GeneratedBy { get; set; }
-
+     public int? duration { get; set; }
     public DateTime? Usedate { get; set; }
 
     public bool Used { get; set; }
+    public bool? QuizRequired { get; set; }
+    
 
     public DateTime? GeneratedAt { get; set; }
 

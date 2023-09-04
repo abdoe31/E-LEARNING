@@ -14,19 +14,19 @@ namespace E_Learning.BL;
 
 public class LectureManger : ILectureManger
 {
-private readonly    IUnitOfWork _UnitOfWork;
+    private readonly IUnitOfWork _UnitOfWork;
     private readonly ELearningContext _eLearningContext;
 
-    public LectureManger(IUnitOfWork unitOfWork  , ELearningContext _eLearningContext )
+    public LectureManger(IUnitOfWork unitOfWork, ELearningContext _eLearningContext)
     {
         _UnitOfWork = unitOfWork;
-        this._eLearningContext= _eLearningContext;
+        this._eLearningContext = _eLearningContext;
 
     }
 
     public int AddAcessToUser(List<AddLectureAcessDto> addLectureAcessDtos)
     {
-        if(addLectureAcessDtos.IsNullOrEmpty())
+        if (addLectureAcessDtos.IsNullOrEmpty())
         {
             return -1;
         }
@@ -36,9 +36,9 @@ private readonly    IUnitOfWork _UnitOfWork;
         foreach (var item in addLectureAcessDtos)
         {
 
-            UserLecture userLecture = new UserLecture 
+            UserLecture userLecture = new UserLecture
             { Lectureid = item.Lectureid, AcessType = item.AcessType,
-                StudentId = item.UserId, 
+                StudentId = item.UserId,
                 QuizRequired = item.quizrequird, Duration = item.Duration };
 
             UserLectures.Add(userLecture);
@@ -46,7 +46,7 @@ private readonly    IUnitOfWork _UnitOfWork;
 
 
         _UnitOfWork._UserLecturerepository.AddALL(UserLectures);
-      return  _UnitOfWork.SaveChanges();
+        return _UnitOfWork.SaveChanges();
     }
 
     public int addLecture(AddLectureDTO addlecturedto)
@@ -61,7 +61,7 @@ private readonly    IUnitOfWork _UnitOfWork;
             Quizid = addlecturedto.Quizid
         ,
             Classid = addlecturedto.Classid,
-            number = addlecturedto.number, VideoParts= addlecturedto.addvideos.Select(x=> new VideoPart { number = x.number  ,  Url=x.link, PartHeader= x.PartHeader}).ToList()
+            number = addlecturedto.number, VideoParts = addlecturedto.addvideos.Select(x => new VideoPart { number = x.number, Url = x.link, PartHeader = x.PartHeader }).ToList()
         };
         _UnitOfWork.lecturerepository.Add(lecture);
         return _UnitOfWork.SaveChanges();
@@ -99,11 +99,14 @@ private readonly    IUnitOfWork _UnitOfWork;
             var code = new string(Enumerable.Repeat(chars, l).Select(s => s[random.Next(s.Length)]).ToArray());
             item.Lectureid = postCodegenerateddto.Lectureid;
             item.Code = code;
+            item.duration = postCodegenerateddto.duration;
+            item.QuizRequired = postCodegenerateddto.QuizRequird;
 
         }
 
+
         _eLearningContext.LectureCodes.AddRange(codes);
-         _UnitOfWork.SaveChanges();
+        _UnitOfWork.SaveChanges();
 
         return codes.Select(x => new Codegenerateddto { LectureName = x.Lecture.Header, Code = x.Code }).ToList();
 
@@ -135,7 +138,7 @@ private readonly    IUnitOfWork _UnitOfWork;
     {
 
 
-        var lecture = _eLearningContext.UserLectures.Where(x => x.Lectureid== lectureId);
+        var lecture = _eLearningContext.UserLectures.Where(x => x.Lectureid == lectureId);
         if (lecture == null)
         {
 
@@ -173,15 +176,15 @@ private readonly    IUnitOfWork _UnitOfWork;
         }
 
 
-        return Lectures.Select(x => new LectureDetailsDto { Header = x.Header, Assighnmentid=x.Assighnmentid, AssighnmentName=x.Assighnment.Header,
-            ClassName=x.Class.Name, LectureId=x.Id, Quizid=x.Quizid, QuizName=x.Quiz.Header }).ToList();
+        return Lectures.Select(x => new LectureDetailsDto { Header = x.Header, Assighnmentid = x.Assighnmentid, AssighnmentName = x.Assighnment.Header,
+            ClassName = x.Class.Name, LectureId = x.Id, Quizid = x.Quizid, QuizName = x.Quiz.Header }).ToList();
     }
 
     public UsersCLass GetLectureWithUsers(int Lectureid)
     {
 
         var lecture = _eLearningContext.Lectures.Where(x => x.Id == Lectureid).FirstOrDefault();
-        if(lecture is null)
+        if (lecture is null)
         {
             return null;
         }
@@ -192,12 +195,12 @@ private readonly    IUnitOfWork _UnitOfWork;
 
             return null;
         }
-        UsersCLass U = new UsersCLass { LectureId = Lectureid, LectureName = lecture.Header, users = users.Select(x => new Users {   id=x.Id,
-             userName = $"{x.FirstName}  {x.SecondName}  {x.LastName}",   ParentPhone= x.ParentPhoneNumber , Phone= x.PhoneNumber
+        UsersCLass U = new UsersCLass { LectureId = Lectureid, LectureName = lecture.Header, users = users.Select(x => new Users { id = x.Id,
+            userName = $"{x.FirstName}  {x.SecondName}  {x.LastName}", ParentPhone = x.ParentPhoneNumber, Phone = x.PhoneNumber
 
         }).ToList() };
 
-        return U; 
+        return U;
 
     }
 
@@ -205,17 +208,17 @@ private readonly    IUnitOfWork _UnitOfWork;
     {
         var user = _UnitOfWork._Userrepository.GetUser(Studentid);
 
-        if(user == null)
+        if (user == null)
         {
             return null;
         }
 
         var userattend = new UserLecturedto { StudentName = $"{user.FirstName}  {user.SecondName}  {user.LastName}",
 
-            lectureuserAcessds = user.UserLectures.Select(x=> new lectureuserAcessd { Lectureid = x.Id, AcessType= x.AcessType.ToString() , Start=x.Start
-            
-            , End=x.End
-             , LectureName= x.Lecture.Header}).ToList()
+            lectureuserAcessds = user.UserLectures.Select(x => new lectureuserAcessd { Lectureid = x.Id, AcessType = x.AcessType.ToString(), Start = x.Start
+
+            , End = x.End
+             , LectureName = x.Lecture.Header }).ToList()
         };
 
 
@@ -224,20 +227,149 @@ private readonly    IUnitOfWork _UnitOfWork;
 
     public int UpdateLecture(UpdateLectureDto updateLectureDto)
     {
-        var lecture = _eLearningContext.Lectures.Where(x =>x.Id == updateLectureDto.LectureId).FirstOrDefault();
+        var lecture = _eLearningContext.Lectures.Where(x => x.Id == updateLectureDto.LectureId).FirstOrDefault();
 
-        if(lecture == null) { return -1;  }
+        if (lecture == null) { return -1; }
 
         lecture.Classid = updateLectureDto.Classid;
-        lecture.Header= updateLectureDto.Header;
+        lecture.Header = updateLectureDto.Header;
         lecture.Quizid = updateLectureDto.Quizid;
         lecture.Assighnmentid = updateLectureDto.Assighnmentid;
         return _UnitOfWork.SaveChanges();
 
     }
 
+    public int AcessLectureByCode(string code, string userid)
+    {
+
+
+        var lecturecode = _eLearningContext.LectureCodes.Where(x => x.Code == code  && x.Used==false).Include(x => x.Lecture).FirstOrDefault();
+
+        if (lecturecode== null)
+        {
+
+            return -1;
+        }
+        lecturecode.Used = true;
+        lecturecode.Usedate = DateTime.Now;
+
+        _UnitOfWork._Userrepository.GetUser(userid).UserLectures.Add( new UserLecture {  Lectureid=lecturecode.Lectureid , AcessType= AcessType.Code,
+            Duration= lecturecode.duration, StudentId=  userid , QuizRequired= (bool)lecturecode.QuizRequired 
+        });
+        return _UnitOfWork.SaveChanges() ; 
+    }
+
+    public StartendLecture startWatching(int userLectureid)
+    {
+        var userlecture = _eLearningContext.UserLectures.Where(x=>x.Id==userLectureid).FirstOrDefault();
+
+        userlecture.Start = DateTime.Now;
+
+        if(userlecture.Duration != null)
+        {
+            userlecture.End = DateTime.Now.AddDays((int)userlecture.Duration);
+
+
+        }
+
+       var state =  _UnitOfWork.SaveChanges();
+        if (state > 0)
+        {
+
+
+            return new StartendLecture { start = userlecture.Start, end = userlecture.End };
+        }
+        return null;
+
+
+    }
+
+    public List<GetLecturetowatchDto> getLecturetowatch (string userid)
+    {
+
+
+      var lectures =    _eLearningContext.UserLectures.Where(x=>x.Start==null || x.End< DateTime.Now  && x.StudentId==userid).Include(x=>x.Lecture);
+        
+        var lecturestowatch = new List<GetLecturetowatchDto>();
+
+
+        foreach (var item  in lectures)
+        {
+
+            GetLecturetowatchDto getLecturetowatchDto = new GetLecturetowatchDto();
+
+            getLecturetowatchDto.Lectureid = item.Id;
+            getLecturetowatchDto.LectureName = item.Lecture.Header;
+            //
+
+
+            if (item.QuizSolved==false  || item.QuizRequired == true)
+            {
+
+                getLecturetowatchDto.quizId = item.Lecture.Quizid;
+                getLecturetowatchDto.QuizName = item.Lecture?.Quiz?.Header;
 
 
 
 
+
+            }
+
+            if (item.QuizSolved == false && item.QuizRequired == false    )
+            {
+                getLecturetowatchDto.quizId = item.Lecture.Quizid;
+                getLecturetowatchDto.QuizName = item.Lecture?.Quiz?.Header;
+
+                getLecturetowatchDto.videoPartdto = item.Lecture?.VideoParts.Select(x => new videoPartdto { Name = x.PartHeader, Url = x.Url }).ToList();
+
+
+            }
+            if (item.QuizSolved == true )
+            {
+                getLecturetowatchDto.QuizName = item.Lecture?.Quiz?.Header;
+
+                getLecturetowatchDto.videoPartdto = item.Lecture?.VideoParts.Select(x => new videoPartdto { Name = x.PartHeader, Url = x.Url }).ToList();
+
+
+            }
+            if (item.AssighmentSolved)
+            {
+                getLecturetowatchDto.AssighmentName = item.Lecture?.Assighnment?.Header;
+
+            }
+            if (!item.AssighmentSolved)
+            {
+                getLecturetowatchDto.Assighmentid = item.Lecture?.Assighnmentid;
+                getLecturetowatchDto.AssighmentName = item.Lecture?.Assighnment?.Header;
+
+            }
+
+
+
+            if (item.Start != null)
+            {
+                getLecturetowatchDto.start = item.Start;
+                    getLecturetowatchDto.end = item.End;
+                getLecturetowatchDto.startedwatching = true;
+            }
+            else
+            {
+
+                getLecturetowatchDto.start = null;
+                getLecturetowatchDto.end = null;
+                getLecturetowatchDto.startedwatching = false;
+
+
+            }
+
+
+
+            lecturestowatch.Add(getLecturetowatchDto);
+        }
+
+
+        return lecturestowatch;
+
+
+    }
 }

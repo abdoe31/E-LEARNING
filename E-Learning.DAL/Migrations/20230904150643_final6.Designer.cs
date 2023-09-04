@@ -4,6 +4,7 @@ using E_Learning.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Learning.DAL.Migrations
 {
     [DbContext(typeof(ELearningContext))]
-    partial class ELearningContextModelSnapshot : ModelSnapshot
+    [Migration("20230904150643_final6")]
+    partial class final6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -457,9 +460,6 @@ namespace E_Learning.DAL.Migrations
                     b.Property<int>("AcessType")
                         .HasColumnType("int");
 
-                    b.Property<bool>("AssighmentSolved")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("Duration")
                         .HasColumnType("int");
 
@@ -471,9 +471,6 @@ namespace E_Learning.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("QuizRequired")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("QuizSolved")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("Start")

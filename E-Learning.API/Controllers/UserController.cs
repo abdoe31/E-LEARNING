@@ -153,6 +153,19 @@ namespace E_Learning.API.Controllers
 
         }
 
+        [HttpDelete("DeleteUser/{userid}")]
+        public IActionResult DeleteUser(string userid)
+        {
+
+
+            return Ok(_UserManger.DeleteUser(userid));
+
+
+
+        }
+
+
+
 
     }
 }

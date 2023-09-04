@@ -130,9 +130,10 @@ namespace E_Learning.BL
 
         public int DeleteUser(string userid)
         {
+            int E=0 ;
             _UnitOfWork._userAnswerrepository.Deletebystudent(userid);
-            _UnitOfWork._Userrepository.DeleteStudent(userid);
-            return _UnitOfWork.SaveChanges();
+       E +=  _UnitOfWork._Userrepository.DeleteStudent(userid);
+            return  E+= _UnitOfWork.SaveChanges();
 
         }
 
