@@ -29,3 +29,14 @@ C:\Users\admin\Desktop\BackEnd\BackEnd\E-Learning.DAL\obj\Debug\net7.0\ref\E-Lea
 F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.dll
 F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\refint\E-Learning.DAL.dll
 F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.pdb
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\bin\Debug\net7.0\E-Learning.DAL.deps.json
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\bin\Debug\net7.0\E-Learning.DAL.runtimeconfig.json
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\bin\Debug\net7.0\E-Learning.DAL.dll
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\bin\Debug\net7.0\E-Learning.DAL.pdb
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.csproj.AssemblyReference.cache
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.GeneratedMSBuildEditorConfig.editorconfig
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.AssemblyInfoInputs.cache
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.AssemblyInfo.cs
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.csproj.CoreCompileInputs.cache
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\E-Learning.DAL.genruntimeconfig.cache
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.DAL\obj\Debug\net7.0\ref\E-Learning.DAL.dll

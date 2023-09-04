@@ -28,7 +28,6 @@ public interface ILectureManger
     UsersCLass  GetLectureWithUsers(int   Userid);
 
 
-    UsersCLass GetLectureWithUsers(int Userid);
 
 
 }
