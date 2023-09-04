@@ -144,7 +144,7 @@ namespace E_Learning.API.Controllers
 
 
         }
-        [HttpGet("GetLectureWithUsers/{Userid}")]
+        [HttpGet("GetLectureWithUsers/{Lectureid}")]
 
         public IActionResult GetLectureWithUsers(int? Lectureid)
         {
@@ -182,7 +182,7 @@ namespace E_Learning.API.Controllers
         {
 
 
-            if (!string.IsNullOrEmpty(userid))
+            if (string.IsNullOrEmpty(userid))
             {
 
                 return BadRequest();
@@ -193,5 +193,13 @@ namespace E_Learning.API.Controllers
         }
 
 
+        [HttpPost("AcessLectureByCode/{userid}/{code}")]
+
+        public IActionResult AcessLectureByCode(string code, string userid)
+        {
+
+            return Ok(_LectureManger.AcessLectureByCode( code,  userid));
+
+        }
     }
 }

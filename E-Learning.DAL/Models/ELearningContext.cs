@@ -48,7 +48,7 @@ public partial class ELearningContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=.;Database=E-LearningF ;Trusted_Connection=True; encrypt=false;");
+        => optionsBuilder.UseSqlServer("Server=.;Database=E-Learningk ;Trusted_Connection=True; encrypt=false;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -57,7 +57,7 @@ public partial class ELearningContext : DbContext
             entity.HasIndex(e => e.Questionid, "IX_Answers_Questionid");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
 
             entity.HasOne(d => d.Question).WithMany(p => p.Answers)
@@ -73,7 +73,7 @@ public partial class ELearningContext : DbContext
             entity.ToTable("Assighment");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
         });
 
@@ -82,7 +82,7 @@ public partial class ELearningContext : DbContext
             entity.HasIndex(e => e.Yearid, "IX_Classes_yearid");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
             entity.Property(e => e.Name).HasMaxLength(50);
             entity.Property(e => e.Yearid).HasColumnName("yearid");
@@ -103,7 +103,7 @@ public partial class ELearningContext : DbContext
             entity.HasIndex(e => e.Quizid, "IX_Lecture_Quizid");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
 
             entity.HasOne(d => d.Assighnment).WithMany(p => p.Lectures)
@@ -131,7 +131,7 @@ public partial class ELearningContext : DbContext
             entity.HasIndex(e => e.StudentId, "IX_LectureCode_StudentId");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
             entity.Property(e => e.Used).HasColumnName("used");
             entity.Property(e => e.Usedate).HasColumnType("datetime");
@@ -153,7 +153,7 @@ public partial class ELearningContext : DbContext
             entity.HasIndex(e => e.QuizId, "IX_Questions_QuizId");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
             entity.Property(e => e.Type)
                 .HasMaxLength(1)
@@ -173,7 +173,7 @@ public partial class ELearningContext : DbContext
         modelBuilder.Entity<Quize>(entity =>
         {
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
             entity.Property(e => e.Duration).HasColumnName("duration");
             entity.Property(e => e.EndTime).HasColumnType("datetime");
@@ -188,8 +188,7 @@ public partial class ELearningContext : DbContext
             entity.HasIndex(e => e.Yearid, "IX_User_Yearid");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+.ValueGeneratedNever()                .HasColumnName("id");
             entity.Property(e => e.Active)
                 .HasMaxLength(1)
                 .IsUnicode(false)
@@ -231,7 +230,7 @@ public partial class ELearningContext : DbContext
             entity.HasIndex(e => e.UserQuizId, "IX_UserAnswer_UserQuizId");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
             entity.Property(e => e.Right).HasColumnName("right");
             entity.Property(e => e.UserId).HasColumnName("UserID");
@@ -284,7 +283,7 @@ public partial class ELearningContext : DbContext
             entity.HasIndex(e => e.StudentId, "IX_UserLecture_StudentId");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
             entity.Property(e => e.End)
                 .HasColumnType("datetime")
@@ -311,7 +310,7 @@ public partial class ELearningContext : DbContext
             entity.HasIndex(e => e.Studentid, "IX_UserQuiz_Studentid");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityColumn()
                 .HasColumnName("id");
             entity.Property(e => e.End).HasColumnType("datetime");
             entity.Property(e => e.Start).HasColumnType("datetime");
@@ -333,7 +332,7 @@ public partial class ELearningContext : DbContext
 
             entity.HasIndex(e => e.Leactureid, "IX_videoParts_Leactureid");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id)               .UseIdentityColumn();
             entity.Property(e => e.UpdatedBy).HasDefaultValueSql("(N'')");
 
             entity.HasOne(d => d.Leacture).WithMany(p => p.VideoParts)
@@ -346,7 +345,8 @@ public partial class ELearningContext : DbContext
         {
             entity.ToTable("Year");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).UseIdentityColumn();
+
             entity.Property(e => e.Name).HasMaxLength(50);
             entity.Property(e => e.UpdatedBy).HasDefaultValueSql("(N'')");
         });

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Learning.DAL;
 
 public partial class Year
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
+
     public int Id { get; set; }
 
     public string? Name { get; set; }

@@ -10,11 +10,11 @@ public class GetCodesDTO
 {
 
     public int CodeId { get; set; }
-    public string  Code { get; set; }
+    public string?  Code { get; set; }
 
-    public string UserName  { get; set; }
+    public string? UserName  { get; set; }
 
-    public DateTime Usedate { get; set; }
+    public DateTime? Usedate { get; set; }
     public bool Used { get; set; }  
 
 }

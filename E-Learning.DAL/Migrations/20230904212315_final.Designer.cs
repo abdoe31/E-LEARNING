@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Learning.DAL.Migrations
 {
     [DbContext(typeof(ELearningContext))]
-    [Migration("20230904171713_final7")]
-    partial class final7
+    [Migration("20230904212315_final")]
+    partial class final
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,8 +28,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.Answer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Header")
                         .HasColumnType("nvarchar(max)");
@@ -53,8 +56,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.Assighment", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("Classid")
                         .HasColumnType("int");
@@ -84,8 +90,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.Class", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .HasMaxLength(50)
@@ -111,8 +120,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.Lecture", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("Assighnmentid")
                         .HasColumnType("int");
@@ -149,8 +161,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.LectureCode", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -218,8 +233,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.Question", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("Answerid")
                         .HasColumnType("int");
@@ -258,8 +276,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.Quize", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("Classid")
                         .HasColumnType("int");
@@ -352,8 +373,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.UserAnswer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("Answerid")
                         .HasColumnType("int");
@@ -454,8 +478,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.UserLecture", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AcessType")
                         .HasColumnType("int");
@@ -497,8 +524,11 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.UserQuiz", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime");
@@ -527,7 +557,10 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.VideoPart", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("Leactureid")
                         .HasColumnType("int");
@@ -560,7 +593,10 @@ namespace E_Learning.DAL.Migrations
             modelBuilder.Entity("E_Learning.DAL.Year", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .HasMaxLength(50)

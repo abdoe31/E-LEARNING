@@ -15,9 +15,11 @@ namespace E_Learning.DAL.Migrations
                 name: "Assighment",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AnswerFilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Header = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModelAnswerFilePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Classid = table.Column<int>(type: "int", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Updatedat = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -31,7 +33,8 @@ namespace E_Learning.DAL.Migrations
                 name: "Quizes",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     header = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Classid = table.Column<int>(type: "int", nullable: true),
                     StartTime = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -49,7 +52,8 @@ namespace E_Learning.DAL.Migrations
                 name: "Year",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValueSql: "(N'')"),
                     Updatedat = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -63,7 +67,8 @@ namespace E_Learning.DAL.Migrations
                 name: "Classes",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     yearid = table.Column<int>(type: "int", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -96,7 +101,7 @@ namespace E_Learning.DAL.Migrations
                     Role = table.Column<int>(type: "int", nullable: false),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Updatedat = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Pasword = table.Column<int>(type: "int", nullable: false)
+                    Pasword = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -113,10 +118,12 @@ namespace E_Learning.DAL.Migrations
                 name: "Lecture",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Classid = table.Column<int>(type: "int", nullable: true),
                     Header = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Quizid = table.Column<int>(type: "int", nullable: true),
+                    number = table.Column<int>(type: "int", nullable: true),
                     Assighnmentid = table.Column<int>(type: "int", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Updatedat = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -145,19 +152,20 @@ namespace E_Learning.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notification",
+                name: "Notifications",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     body = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Classid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notification", x => x.id);
+                    table.PrimaryKey("PK_Notifications", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Notification_Classes_Classid",
+                        name: "FK_Notifications_Classes_Classid",
                         column: x => x.Classid,
                         principalTable: "Classes",
                         principalColumn: "id",
@@ -174,7 +182,8 @@ namespace E_Learning.DAL.Migrations
                     Assighmentid = table.Column<int>(type: "int", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     solved = table.Column<bool>(type: "bit", nullable: true),
-                    @checked = table.Column<bool>(name: "checked", type: "bit", nullable: true)
+                    @checked = table.Column<bool>(name: "checked", type: "bit", nullable: true),
+                    UserAnswerFilePath = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -234,9 +243,8 @@ namespace E_Learning.DAL.Migrations
                         name: "FK_UserClassRequists_Classes_Classid",
                         column: x => x.Classid,
                         principalTable: "Classes",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-            table.ForeignKey(
+                        principalColumn: "id");
+                    table.ForeignKey(
                         name: "FK_UserClassRequists_User_Userid",
                         column: x => x.Userid,
                         principalTable: "User",
@@ -248,7 +256,8 @@ namespace E_Learning.DAL.Migrations
                 name: "UserQuiz",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Studentid = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Quizid = table.Column<int>(type: "int", nullable: true),
                     Start = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -276,12 +285,16 @@ namespace E_Learning.DAL.Migrations
                 name: "LectureCode",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Lectureid = table.Column<int>(type: "int", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StudentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     GeneratedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    duration = table.Column<int>(type: "int", nullable: true),
                     Usedate = table.Column<DateTime>(type: "datetime", nullable: true),
                     used = table.Column<bool>(type: "bit", nullable: false),
+                    QuizRequired = table.Column<bool>(type: "bit", nullable: true),
                     GeneratedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -305,12 +318,16 @@ namespace E_Learning.DAL.Migrations
                 name: "UserLecture",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     StudentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Lectureid = table.Column<int>(type: "int", nullable: true),
+                    AcessType = table.Column<int>(type: "int", nullable: false),
                     Start = table.Column<DateTime>(type: "datetime", nullable: true),
                     end = table.Column<DateTime>(type: "datetime", nullable: true),
                     QuizRequired = table.Column<bool>(type: "bit", nullable: false),
+                    QuizSolved = table.Column<bool>(type: "bit", nullable: false),
+                    AssighmentSolved = table.Column<bool>(type: "bit", nullable: false),
                     Duration = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -334,9 +351,11 @@ namespace E_Learning.DAL.Migrations
                 name: "videoParts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Leactureid = table.Column<int>(type: "int", nullable: true),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    number = table.Column<int>(type: "int", nullable: true),
                     PartHeader = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValueSql: "(N'')"),
                     Updatedat = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -356,7 +375,8 @@ namespace E_Learning.DAL.Migrations
                 name: "Answers",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Header = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Questionid = table.Column<int>(type: "int", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -371,7 +391,8 @@ namespace E_Learning.DAL.Migrations
                 name: "Questions",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Header = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RightAnswerid = table.Column<int>(type: "int", nullable: true),
                     QuizId = table.Column<int>(type: "int", nullable: true),
@@ -400,7 +421,8 @@ namespace E_Learning.DAL.Migrations
                 name: "UserAnswer",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     QuestionId = table.Column<int>(type: "int", nullable: true),
                     UserQuizId = table.Column<int>(type: "int", nullable: true),
@@ -469,8 +491,8 @@ namespace E_Learning.DAL.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notification_Classid",
-                table: "Notification",
+                name: "IX_Notifications_Classid",
+                table: "Notifications",
                 column: "Classid");
 
             migrationBuilder.CreateIndex(
@@ -580,7 +602,7 @@ namespace E_Learning.DAL.Migrations
                 name: "LectureCode");
 
             migrationBuilder.DropTable(
-                name: "Notification");
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "UserAnswer");
