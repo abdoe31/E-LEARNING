@@ -36,3 +36,10 @@ F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.csproj
 F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.dll
 F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\refint\E-Learning.BL.dll
 F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.pdb
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.BL.deps.json
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.BL.dll
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.BL.pdb
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.DAL.dll
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.DAL.pdb
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.csproj.CopyComplete
+F:\MR.AMR\BackEnd\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\ref\E-Learning.BL.dll

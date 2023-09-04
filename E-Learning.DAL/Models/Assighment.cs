@@ -11,7 +11,7 @@ public partial class Assighment
     public string Header { get; set; } = null!;
 
 
-    public string AnswerFilePath { get; set; } = null!;
+    public string? ModelAnswerFilePath { get; set; } = null!;
 
     public int? Classid { get; set; }
 

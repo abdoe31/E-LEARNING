@@ -16,6 +16,7 @@ public partial class UserAssighment
     public bool? Solved { get; set; }
 
     public bool? Checked { get; set; }
+    public string UserAnswerFilePath { get; set; } = null!;
 
     public virtual Assighment? Assighment { get; set; }
 

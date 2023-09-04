@@ -41,7 +41,9 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 //mangers 
 
 builder.Services.AddScoped<IUserManger, UserManger>();
-builder.Services.AddScoped<IClassManger, ClassManger>(); 
+builder.Services.AddScoped<IClassManger, ClassManger>();
+builder.Services.AddScoped< ILectureManger, LectureManger>();
+
 
 #endregion
 var app = builder.Build();
