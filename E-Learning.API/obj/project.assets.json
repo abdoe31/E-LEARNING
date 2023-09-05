@@ -3951,24 +3951,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\abdo hamdy\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Dell\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\MR.AMR\\BackEnd\\E-LEARNING\\E-Learning.API\\E-Learning.API.csproj",
+      "projectUniqueName": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.API\\E-Learning.API.csproj",
       "projectName": "E-Learning.API",
-      "projectPath": "F:\\MR.AMR\\BackEnd\\E-LEARNING\\E-Learning.API\\E-Learning.API.csproj",
-      "packagesPath": "C:\\Users\\abdo hamdy\\.nuget\\packages\\",
-      "outputPath": "F:\\MR.AMR\\BackEnd\\E-LEARNING\\E-Learning.API\\obj\\",
+      "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.API\\E-Learning.API.csproj",
+      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\abdo hamdy\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3976,17 +3971,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "F:\\MR.AMR\\BackEnd\\E-LEARNING\\E-Learning.BL\\E-Learning.BL.csproj": {
-              "projectPath": "F:\\MR.AMR\\BackEnd\\E-LEARNING\\E-Learning.BL\\E-Learning.BL.csproj"
+            "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.BL\\E-Learning.BL.csproj": {
+              "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.BL\\E-Learning.BL.csproj"
             },
-            "F:\\MR.AMR\\BackEnd\\E-LEARNING\\E-Learning.DAL\\E-Learning.DAL.csproj": {
-              "projectPath": "F:\\MR.AMR\\BackEnd\\E-LEARNING\\E-Learning.DAL\\E-Learning.DAL.csproj"
+            "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\E-Learning.DAL.csproj": {
+              "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\E-Learning.DAL.csproj"
             }
           }
         }
@@ -4049,7 +4045,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }
