@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Learning.DAL;
 
-public partial class ELearningContext : DbContext
+public partial class ELearningContext : IdentityDbContext
 {
     public ELearningContext()
     {
@@ -52,6 +54,10 @@ public partial class ELearningContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<IdentityUser>().UseTptMappingStrategy();
+
         modelBuilder.Entity<Answer>(entity =>
         {
             entity.HasIndex(e => e.Questionid, "IX_Answers_Questionid");

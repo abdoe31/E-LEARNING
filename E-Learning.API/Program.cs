@@ -1,8 +1,9 @@
-
 using E_Learning.DAL;
 using E_Learning.BL;
 using System.Security.AccessControl;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,46 @@ builder.Services.AddCors(options =>
     });
 });
 
+
+#region Identity
+
+//Mainly specify the context and the type of the user that the UserManger will use
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequiredUniqueChars = 3;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 3;
+
+    options.User.RequireUniqueEmail = true;
+})
+    .AddEntityFrameworkStores<ELearningContext>()
+    .AddDefaultTokenProviders();
+
+
+#endregion
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "row"; // For Authentication
+    options.DefaultChallengeScheme = "row"; //To Handle Challenge
+})
+    .AddJwtBearer("row", options =>
+    {
+        //Use this key when validating requests
+        var keyString = builder.Configuration.GetValue<string>("SecretKey");
+        var keyInBytes = Encoding.ASCII.GetBytes(keyString!);
+        var key = new SymmetricSecurityKey(keyInBytes);
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            IssuerSigningKey = key,
+            ValidateIssuer = false,
+            ValidateAudience = false,
+        };
+    });
 #region Service
 
 //database

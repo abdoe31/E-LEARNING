@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.API\\E-Learning.API.csproj": {}
+    "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.API\\E-Learning.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.API\\E-Learning.API.csproj": {
+    "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.API\\E-Learning.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.API\\E-Learning.API.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.API\\E-Learning.API.csproj",
         "projectName": "E-Learning.API",
-        "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.API\\E-Learning.API.csproj",
+        "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.API\\E-Learning.API.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.API\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,11 +29,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.BL\\E-Learning.BL.csproj": {
-                "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.BL\\E-Learning.BL.csproj"
+              "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.BL\\E-Learning.BL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.BL\\E-Learning.BL.csproj"
               },
-              "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\E-Learning.DAL.csproj": {
-                "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\E-Learning.DAL.csproj"
+              "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.DAL\\E-Learning.DAL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.DAL\\E-Learning.DAL.csproj"
               }
             }
           }
@@ -48,6 +48,18 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.10, )"
@@ -72,9 +84,17 @@
               "target": "Package",
               "version": "[7.0.10, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.32.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.32.2, )"
             }
           },
           "imports": [
@@ -100,14 +120,14 @@
         }
       }
     },
-    "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.BL\\E-Learning.BL.csproj": {
+    "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.BL\\E-Learning.BL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.BL\\E-Learning.BL.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.BL\\E-Learning.BL.csproj",
         "projectName": "E-Learning.BL",
-        "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.BL\\E-Learning.BL.csproj",
+        "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.BL\\E-Learning.BL.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.BL\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.BL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -124,8 +144,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\E-Learning.DAL.csproj": {
-                "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\E-Learning.DAL.csproj"
+              "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.DAL\\E-Learning.DAL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.DAL\\E-Learning.DAL.csproj"
               }
             }
           }
@@ -159,14 +179,14 @@
         }
       }
     },
-    "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\E-Learning.DAL.csproj": {
+    "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.DAL\\E-Learning.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\E-Learning.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.DAL\\E-Learning.DAL.csproj",
         "projectName": "E-Learning.DAL",
-        "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\E-Learning.DAL.csproj",
+        "projectPath": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.DAL\\E-Learning.DAL.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Desktop\\E_Learn2\\E-Learning.DAL\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\Desktop\\E_Learning\\E-Learning.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -195,6 +215,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.10, )"
