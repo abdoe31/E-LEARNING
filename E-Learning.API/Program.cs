@@ -32,7 +32,7 @@ builder.Services.AddScoped<IUserrepository, Userrepository>();
 builder.Services.AddScoped<IUserAnswerrepository, UserAnswerrepository>();
 builder.Services.AddScoped<IClassrepository, Classrepository>();
 builder.Services.AddScoped<ILecturerepository, Lecturerepository>();
-
+builder.Services.AddScoped<IAssigmentrepository, Assigmentrepository>();
 builder.Services.AddScoped<IUserLecturerepository, UserLecturerepository>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); 
@@ -43,6 +43,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserManger, UserManger>();
 builder.Services.AddScoped<IClassManger, ClassManger>();
 builder.Services.AddScoped< ILectureManger, LectureManger>();
+builder.Services.AddScoped<IAssighmentManger, AssighmentManger>();
 
 
 #endregion
