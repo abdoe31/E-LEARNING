@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -84,6 +85,10 @@ namespace E_Learning.API.Controllers
             {
                 return BadRequest(creationResult.Errors);
             }
+            if (creationResult.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, role: "Student");
+            }
 
             //_UnitOfWork._Userrepository.Add(user);
             // _UnitOfWork.SaveChanges();
@@ -94,10 +99,12 @@ namespace E_Learning.API.Controllers
                 new (ClaimTypes.Role, user.Role.ToString()),
             };
             var addingClaimsResult = await _userManager.AddClaimsAsync(user, claims);
+
             if (!addingClaimsResult.Succeeded)
             {
                 return BadRequest(addingClaimsResult.Errors);
             }
+           
             return Ok(new { UserName = user.Username, Password = user.Pasword });
             ///
 
@@ -117,7 +124,7 @@ namespace E_Learning.API.Controllers
 
         [HttpPost]
         [Route("StudentLogin")]
-        public async Task<ActionResult<TokenDto>> Login(LoginDto credentials)
+        public async Task<ActionResult<TokenDto>> Login([FromForm]LoginDto credentials)
         {
             var user = await _userManager.FindByNameAsync(credentials.UserName);
             if (user == null)
@@ -212,7 +219,7 @@ namespace E_Learning.API.Controllers
 
         [HttpPut]
         [Route("ChangePassword")]
-
+        [Authorize(Roles =  "Admin")]
         public async   Task<IActionResult> ChangePassword(ChangePassoworddto changePassoworddto)
         {
             User? user = await _userManager.FindByIdAsync(changePassoworddto.id);
