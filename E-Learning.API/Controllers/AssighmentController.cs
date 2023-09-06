@@ -1,4 +1,5 @@
 ﻿using E_Learning.BL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -88,6 +89,8 @@ namespace E_Learning.API.Controllers
 
         [HttpPost]
         [Route("AddUserAssihgment")]
+        [Authorize(Roles = "Student")]
+
         public ActionResult<AddUserAssighmenstDto> AddUserAssihgment([FromForm ]AddUserAssighmenstDto assighment)
         {
 
@@ -103,6 +106,8 @@ namespace E_Learning.API.Controllers
 
         [HttpGet]
         [Route("GetUserAssighmentsByUserId")]
+        [Authorize(Roles = "Student")]
+
         public ActionResult GetUserAssighmentsByUserId(string UserId)
         {
 
@@ -122,6 +127,8 @@ namespace E_Learning.API.Controllers
 
         [HttpPut]
         [Route(template: "CorrectUserAss")]
+        [Authorize(Roles = "Admin")]
+
         public ActionResult CorrectUserAss([FromForm]EditUserAssighment assighment)
         {
             if (!ModelState.IsValid)
