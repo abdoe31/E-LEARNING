@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace E_Learning.DAL;
 
-public partial class User
+public partial class User : IdentityUser
 {
     public string Id { get; set; }= Guid.NewGuid().ToString();
 
@@ -15,7 +16,7 @@ public partial class User
     public string? SecondName { get; set; } = string.Empty; 
     public string? LastName { get; set; } = string.Empty;
 
-    public string? PhoneNumber { get; set; } = string.Empty;
+    //public string? PhoneNumber { get; set; } = string.Empty;
 
     public string? ParentPhoneNumber { get; set; } = string.Empty;
 

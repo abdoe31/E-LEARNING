@@ -1,9 +1,16 @@
 ﻿using E_Learning.BL;
 using E_Learning.BL.DTO;
+using E_Learning.DAL;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace E_Learning.API.Controllers
 {
@@ -12,35 +19,151 @@ namespace E_Learning.API.Controllers
     public class UserController : ControllerBase
     {
         private  readonly IUserManger _UserManger;
+        private readonly IUnitOfWork _UnitOfWork;
+        private readonly UserManager<User> _userManager;
+        private readonly IConfiguration _configuration;
 
-        public UserController (IUserManger studentManger)
+
+
+        public UserController(IUserManger studentManger, IUnitOfWork unitOfWork, UserManager<User> userManager , IConfiguration configuration)
         {
             _UserManger = studentManger;
+            _UnitOfWork = unitOfWork;
+            _userManager = userManager;
+            _configuration = configuration;
+
+
+
         }
 
 
         [HttpPost]
-        [Route("AddStudent")]
+        [Route("StudentRigster")]
 
-        public IActionResult AddStudent(  AddStudentDto addStudentDto)
+        public async Task<IActionResult> AddStudent(  AddStudentDto addStudentDto)
         {
             if (addStudentDto == null)
             {
-
                 return BadRequest("NO DATA TO ENTER");
-
-
             }
-          var state = _UserManger.AddStudent(addStudentDto);
-            if (state == null)
+            ////
+            ///
+            var r = new Random();
+            string pass = r.Next(10000, 99999).ToString();
+
+            User user = new User
             {
+                Email = pass+"Test@test.com",
+                Active = addStudentDto.Active,
+                FirstName = addStudentDto.FirstName,
+                LastName = addStudentDto.LastName,
+                PhoneNumber = addStudentDto.PhoneNumber,
+                SecondName = addStudentDto.SecondName,
+                ParentPhoneNumber = addStudentDto.ParentPhoneNumber,
+                Pasword = pass,
+                Role = addStudentDto.Role
+                
+            };
+            if (addStudentDto.Yearid != null)
+            {
+                user.Yearid = addStudentDto.Yearid;
+            }
+            user.Username = _UnitOfWork._Userrepository.generateUsername(user);
+            user.UserName = _UnitOfWork._Userrepository.generateUsername(user);
 
-                return BadRequest("server error");
+
+            if (!(addStudentDto.userClassDTOs.IsNullOrEmpty()))
+            {
+                foreach (var y in addStudentDto.userClassDTOs)
+                {
+                    user.Classes.Add(_UnitOfWork.classrepository.getbyid(y.Id));
+                }
+            }
+            var creationResult = await _userManager.CreateAsync(user, pass);
+            if (!creationResult.Succeeded)
+            {
+                return BadRequest(creationResult.Errors);
             }
 
-            return Ok(state);
+            //_UnitOfWork._Userrepository.Add(user);
+            // _UnitOfWork.SaveChanges();
+            var claims = new List<Claim>
+            {
+                new (ClaimTypes.NameIdentifier, user.Id),
+                new (ClaimTypes.Name, user.Username),
+                new (ClaimTypes.Role, user.Role.ToString()),
+            };
+            var addingClaimsResult = await _userManager.AddClaimsAsync(user, claims);
+            if (!addingClaimsResult.Succeeded)
+            {
+                return BadRequest(addingClaimsResult.Errors);
+            }
+            return Ok(new { UserName = user.Username, Password = user.Pasword });
+            ///
+
+
+            //var state = _UserManger.AddStudent(addStudentDto);
+            //  if (state == null)
+            //  {
+
+            //      return BadRequest("server error");
+            //  }
+
+            //  return Ok(state);
 
         }
+
+        #region Login
+
+        [HttpPost]
+        [Route("StudentLogin")]
+        public async Task<ActionResult<TokenDto>> Login(LoginDto credentials)
+        {
+            var user = await _userManager.FindByNameAsync(credentials.UserName);
+            if (user == null)
+            {
+                return BadRequest();
+            }
+            if (user.Active == false)
+            {
+                return BadRequest("This Student Not Active");
+            }
+
+            bool isPasswordCorrect = await _userManager.CheckPasswordAsync(user, credentials.Password);
+            if (!isPasswordCorrect)
+            {
+                return BadRequest("UserName or Password Wrong");
+            }
+
+            List<Claim> claimsList = (await _userManager.GetClaimsAsync(user)).ToList();
+
+            var keyString = _configuration.GetValue<string>("SecretKey");
+            var keyInBytes = Encoding.ASCII.GetBytes(keyString!);
+            var key = new SymmetricSecurityKey(keyInBytes);
+
+            // Hashing Criteria 
+            SigningCredentials signingCredentials = new SigningCredentials(key,
+                SecurityAlgorithms.HmacSha256Signature);
+
+            // Putting All together
+            DateTime exp = DateTime.Now.AddDays(200);
+            JwtSecurityToken token = new JwtSecurityToken(
+                    claims: claimsList,
+                    signingCredentials: signingCredentials,
+                    expires: exp
+                );
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            string tokenString = tokenHandler.WriteToken(token);
+
+            return new TokenDto
+            {
+                Token = tokenString,
+                Expiry = exp,
+            };
+        }
+
+        #endregion
 
         [HttpPost]
         [Route("GetStudents")]
@@ -90,21 +213,51 @@ namespace E_Learning.API.Controllers
         [HttpPut]
         [Route("ChangePassword")]
 
-        public IActionResult ChangePassword(ChangePassoworddto changePassoworddto)
+        public async   Task<IActionResult> ChangePassword(ChangePassoworddto changePassoworddto)
         {
-
-
-
-            var state = _UserManger.ChangePassword(changePassoworddto);
-            if (state < 0)
+            User? user = await _userManager.FindByIdAsync(changePassoworddto.id);
+            if (user is null)
             {
-                return BadRequest("data are wrong ");
+                return NotFound("user not found!!!");
             }
-            if (state == 0)
+
+         
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            //var encodedtoken = Encoding.UTF8.GetBytes(token);
+            //var validtoken = WebEncoders.Base64UrlEncode(encodedtoken);
+
+            var result = await _userManager.ResetPasswordAsync(user, token, changePassoworddto.Newpassword);
+
+            if (!result.Succeeded)
             {
-                return Ok("nothing change  ");
+                return BadRequest(result.Errors);
             }
-            return Ok(state);
+            if (result.Succeeded)
+            {
+                user.Pasword = changePassoworddto.Newpassword;
+                _UnitOfWork.SaveChanges();
+
+            }
+
+            var response = new
+            {
+                message = "Password has been Reset Successfully!!!"
+            };
+
+            return Ok(response);
+
+
+            //var state = _UserManger.ChangePassword(changePassoworddto);
+            //if (state < 0)
+            //{
+            //    return BadRequest("data are wrong ");
+            //}
+            //if (state == 0)
+            //{
+            //    return Ok("nothing change  ");
+            //}
+            //return Ok(state);
 
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -22,12 +23,13 @@ namespace E_Learning.BL
         public string? PhoneNumber { get; set; }
         public string? ParentPhoneNumber { get; set; }
 
-        public bool Active { get; set; }
+        [DefaultValue(false)]   
+        public bool Active { get; set; } 
 
         public int? Yearid { get; set; }
         public Role Role { get; set; }
 
-        public List<UserClassDTO>?  userClassDTOs { get; set; }
+        public List<UserClassDTO>? userClassDTOs { get; set; }
 
     }
 }
