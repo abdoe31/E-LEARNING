@@ -155,7 +155,7 @@ public class QuizManger : IQuizManger
 
     public GetQustionWithAnswersDto GetQustionWithAnswers(int Quizid)
     {
-
+        return null;
 
     }
 

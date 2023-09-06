@@ -57,7 +57,7 @@ namespace E_Learning.API.Controllers
                 Active = addStudentDto.Active,
                 FirstName = addStudentDto.FirstName,
                 LastName = addStudentDto.LastName,
-                PhoneNumber = addStudentDto.PhoneNumber,
+                StudentPhoneNumber = addStudentDto.PhoneNumber,
                 SecondName = addStudentDto.SecondName,
                 ParentPhoneNumber = addStudentDto.ParentPhoneNumber,
                 Pasword = pass,
@@ -69,7 +69,7 @@ namespace E_Learning.API.Controllers
                 user.Yearid = addStudentDto.Yearid;
             }
             user.Username = _UnitOfWork._Userrepository.generateUsername(user);
-            user.UserName = _UnitOfWork._Userrepository.generateUsername(user);
+            user.UserName = user.Username;
 
 
             if (!(addStudentDto.userClassDTOs.IsNullOrEmpty()))

@@ -73,3 +73,18 @@ C:\Users\Dell\Desktop\E_Learning\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.dl
 C:\Users\Dell\Desktop\E_Learning\E-Learning.BL\obj\Debug\net7.0\refint\E-Learning.BL.dll
 C:\Users\Dell\Desktop\E_Learning\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.pdb
 C:\Users\Dell\Desktop\E_Learning\E-Learning.BL\obj\Debug\net7.0\ref\E-Learning.BL.dll
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.BL.deps.json
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.BL.dll
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.BL.pdb
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.DAL.dll
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\bin\Debug\net7.0\E-Learning.DAL.pdb
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.csproj.AssemblyReference.cache
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.AssemblyInfoInputs.cache
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.AssemblyInfo.cs
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.csproj.CoreCompileInputs.cache
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.csproj.CopyComplete
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.dll
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\refint\E-Learning.BL.dll
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\E-Learning.BL.pdb
+C:\Users\abdo hamdy\Source\Repos\abdoe31\E-LEARNING\E-Learning.BL\obj\Debug\net7.0\ref\E-Learning.BL.dll

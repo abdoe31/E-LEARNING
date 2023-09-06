@@ -20,12 +20,12 @@ public interface IQuizManger
    
     public GetQustionWithAnswersDto GetQustionWithAnswers(int Quizid );
 
-    public int UpdateQUIZ(UpdateQuizDto addquistionDto);
+   // public int UpdateQUIZ(UpdateQuizDto addquistionDto);
 
-    public int DeleteAnswer (int id);
+   // public int DeleteAnswer (int id);
 
-    public int deleteQuiz(int id);
-    public int DeleteQuestion(int id);
+  //  public int deleteQuiz(int id);
+  //  public int DeleteQuestion(int id);
 
 
 
