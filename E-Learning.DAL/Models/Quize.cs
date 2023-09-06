@@ -19,7 +19,7 @@ public partial class Quize
     public DateTime? EndTime { get; set; }
 
     public int? Duration { get; set; }
-
+    public QuizType  quizType { get; set; } 
     public string? UpdatedBy { get; set; }
 
     public DateTime? Updatedat { get; set; }
@@ -30,3 +30,9 @@ public partial class Quize
 
     public virtual ICollection<UserQuiz> UserQuizzes { get; set; } = new List<UserQuiz>();
 }
+public enum QuizType
+{
+
+    Month , lecture 
+
+} 
