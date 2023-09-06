@@ -303,6 +303,9 @@ namespace E_Learning.DAL.Migrations
                     b.Property<DateTime?>("Updatedat")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("quizType")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Quizes");
@@ -644,8 +647,7 @@ namespace E_Learning.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
@@ -801,6 +803,10 @@ namespace E_Learning.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SecondName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("StudentPhoneNumber")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
