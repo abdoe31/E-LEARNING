@@ -202,7 +202,7 @@ public partial class ELearningContext : IdentityDbContext
             entity.Property(e => e.FirstName).HasMaxLength(50);
             entity.Property(e => e.LastName).HasMaxLength(50);
             entity.Property(e => e.ParentPhoneNumber).HasMaxLength(50);
-            entity.Property(e => e.StudentPhoneNumber).HasMaxLength(50);
+            entity.Property(e => e.UserPhoneNumber).HasMaxLength(50);
             entity.Property(e => e.SecondName).HasMaxLength(50);
 
             entity.HasOne(d =>d.Year).WithMany(d=>d.Users).HasForeignKey(d => d.Yearid).OnDelete(DeleteBehavior.SetNull);

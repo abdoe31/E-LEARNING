@@ -14,8 +14,7 @@ namespace E_Learning.BL
 
         ICollection<UserClassDTO> GetAllByYear(int yearid);
 
-        ICollection<GetUserCLassRequistsdto> GetAllClassesRequists(int Classid);
-
+        GetCLassdto GetAllClassesRequists(int Classid);
 
         ICollection<UserYearDTO> GetAllYears();
 

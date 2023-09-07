@@ -199,7 +199,7 @@ public class LectureManger : ILectureManger
             return null;
         }
         UsersCLass U = new UsersCLass { LectureId = Lectureid, LectureName = lecture.Header, users = users.Select(x => new Users { id = x.Id,
-            userName = $"{x.FirstName}  {x.SecondName}  {x.LastName}", ParentPhone = x.ParentPhoneNumber, Phone = x.StudentPhoneNumber
+            userName = $"{x.FirstName}  {x.SecondName}  {x.LastName}", ParentPhone = x.ParentPhoneNumber, Phone = x.UserPhoneNumber
 
         }).ToList() };
 

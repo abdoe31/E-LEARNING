@@ -2,6 +2,7 @@
 using E_Learning.BL.DTO;
 using E_Learning.DAL;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
@@ -58,7 +59,7 @@ namespace E_Learning.API.Controllers
                 Active = addStudentDto.Active,
                 FirstName = addStudentDto.FirstName,
                 LastName = addStudentDto.LastName,
-                StudentPhoneNumber = addStudentDto.PhoneNumber,
+                UserPhoneNumber = addStudentDto.PhoneNumber,
                 SecondName = addStudentDto.SecondName,
                 ParentPhoneNumber = addStudentDto.ParentPhoneNumber,
                 Pasword = pass,
@@ -269,6 +270,14 @@ namespace E_Learning.API.Controllers
         }
 
 
+        [HttpGet]
+        [Route("GetUser/{id}")]
+
+        public IActionResult GetUser( string id )
+        {
+         return Ok (    _UserManger.GetUser(id));
+
+        }
         [HttpPut]
         [Route("UpdateUser")]
 

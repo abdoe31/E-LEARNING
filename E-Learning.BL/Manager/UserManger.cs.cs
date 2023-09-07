@@ -38,7 +38,7 @@ namespace E_Learning.BL
                 FirstName = addStudentDto.FirstName,
                 LastName = addStudentDto.LastName
             ,
-                StudentPhoneNumber = addStudentDto.PhoneNumber,
+                UserPhoneNumber = addStudentDto.PhoneNumber,
                 SecondName = addStudentDto.SecondName,
                 ParentPhoneNumber = addStudentDto.ParentPhoneNumber,
                 Pasword = r.Next(10000, 99999).ToString(),
@@ -127,7 +127,48 @@ namespace E_Learning.BL
 
 
 
+        public GetUserDto GetUser(String id)
+        {
 
+         var User=     _UnitOfWork._Userrepository.GetUser(id);
+
+            if (User.Role == Role.Student)
+            {
+                return new GetUserDto
+                {
+                    FirstName = User.FirstName,
+                    Id = User.Id,
+                    LastName = User.LastName,
+
+                    SecondName = User.SecondName,
+                    ParentPhoneNumber = User.ParentPhoneNumber,
+                    password = User.Pasword,
+                    Username = User.Username,
+                    PhoneNumber = User.UserPhoneNumber
+                };
+            }
+            if(User.Role== Role.Sadmin || User.Role== Role.Admin)
+            {
+
+                return new GetUserDto
+                {
+                    FirstName = User.FirstName,
+                    Id = User.Id,
+                    SecondName = User.SecondName,
+                    password = User.Pasword,
+                    Username = User.Username,
+                    PhoneNumber = User.UserPhoneNumber
+                };
+
+            }
+
+            else
+            {
+                return null;
+            }
+
+        }
+             
         public int DeleteUser(string userid)
         {
             int E=0 ;
@@ -146,7 +187,7 @@ namespace E_Learning.BL
                 Name = $"{x.FirstName}  {x.SecondName} ",
 
                 Pasword = x.Pasword,
-                PhoneNumber = x.StudentPhoneNumber
+                PhoneNumber = x.UserPhoneNumber
                                  ,
                 Username = x.Username,
             }).ToList();
@@ -165,7 +206,7 @@ namespace E_Learning.BL
                     Name = $"{x.FirstName}  {x.SecondName} {x.LastName}",
                     ParentPhoneNumber = x.ParentPhoneNumber,
                     Pasword = x.Pasword,
-                    PhoneNumber = x.StudentPhoneNumber
+                    PhoneNumber = x.UserPhoneNumber
                       ,
                     Username = x.Username,
                     userYear = new UserYearDTO { Id = x.Yearid, Name = x.Year?.Name, Classes = x.Year?.Classes.Select(z => new UserClassDTO { Id = z.Id, Name = z.Name }).ToList() }
@@ -184,7 +225,7 @@ namespace E_Learning.BL
                     Name = $"{x.FirstName}  {x.SecondName} {x.LastName}",
                     ParentPhoneNumber = x.ParentPhoneNumber,
                     Pasword = x.Pasword,
-                    PhoneNumber = x.StudentPhoneNumber
+                    PhoneNumber = x.UserPhoneNumber
                       ,
                     Username = x.Username,
                     userYear = new UserYearDTO { Id = x.Yearid, Name = x.Year?.Name, Classes = _UnitOfWork.classrepository.GetAllByYear((int)x.Yearid).Select(z => new UserClassDTO { Id = z.Id, Name = z.Name }).ToList() }
@@ -206,7 +247,7 @@ namespace E_Learning.BL
                 Name = $"{x.FirstName}  {x.SecondName} {x.LastName}",
                 ParentPhoneNumber = x.ParentPhoneNumber,
                 Pasword = x.Pasword,
-                PhoneNumber = x.StudentPhoneNumber
+                PhoneNumber = x.UserPhoneNumber
                             ,
                 Username = x.Username,
                 userYear = new UserYearDTO { Id = x.Yearid, Name = x.Year?.Name, Classes = x.Classes.Where(x => x.Id == classid).Select(z => new UserClassDTO { Id = z.Id, Name = z.Name }).ToList() }
@@ -236,7 +277,7 @@ namespace E_Learning.BL
                 Update.ParentPhoneNumber = user.ParentPhoneNumber;
             }
 
-            Update.StudentPhoneNumber = user.PhoneNumber;
+            Update.UserPhoneNumber = user.PhoneNumber;
             Update.Pasword = user.password;
 
             _UnitOfWork._Userrepository.Update(Update);
