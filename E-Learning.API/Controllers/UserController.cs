@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
@@ -43,6 +44,9 @@ namespace E_Learning.API.Controllers
 
         public async Task<IActionResult> AddStudent(  AddStudentDto addStudentDto)
         {
+            if(!ModelState.IsValid) { 
+            return BadRequest(ModelState);
+            }
             if (addStudentDto == null)
             {
                 return BadRequest("NO DATA TO ENTER");
@@ -87,11 +91,8 @@ namespace E_Learning.API.Controllers
             }
             if (creationResult.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, role: "Student");
+                await _userManager.AddToRoleAsync(user, role: addStudentDto.Role.ToString());
             }
-
-            //_UnitOfWork._Userrepository.Add(user);
-            // _UnitOfWork.SaveChanges();
             var claims = new List<Claim>
             {
                 new (ClaimTypes.NameIdentifier, user.Id),
@@ -106,17 +107,6 @@ namespace E_Learning.API.Controllers
             }
            
             return Ok(new { UserName = user.Username, Password = user.Pasword });
-            ///
-
-
-            //var state = _UserManger.AddStudent(addStudentDto);
-            //  if (state == null)
-            //  {
-
-            //      return BadRequest("server error");
-            //  }
-
-            //  return Ok(state);
 
         }
 
@@ -124,7 +114,7 @@ namespace E_Learning.API.Controllers
 
         [HttpPost]
         [Route("StudentLogin")]
-        public async Task<ActionResult<TokenDto>> Login([FromForm]LoginDto credentials)
+        public async Task<ActionResult<TokenDto>> Login(LoginDto credentials)
         {
             var user = await _userManager.FindByNameAsync(credentials.UserName);
             if (user == null)
@@ -219,23 +209,27 @@ namespace E_Learning.API.Controllers
 
         [HttpPut]
         [Route("ChangePassword")]
-        [Authorize(Roles =  "Admin")]
+        //[Authorize(Roles =  "Admin")]
         public async   Task<IActionResult> ChangePassword(ChangePassoworddto changePassoworddto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            else if(changePassoworddto.Newpassword == changePassoworddto.Oldpassword) {
+                return BadRequest("Same Old Password!!!");    
+
+            }
+
             User? user = await _userManager.FindByIdAsync(changePassoworddto.id);
             if (user is null)
             {
                 return NotFound("user not found!!!");
             }
 
-         
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            //var encodedtoken = Encoding.UTF8.GetBytes(token);
-            //var validtoken = WebEncoders.Base64UrlEncode(encodedtoken);
-
             var result = await _userManager.ResetPasswordAsync(user, token, changePassoworddto.Newpassword);
-
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
@@ -244,9 +238,7 @@ namespace E_Learning.API.Controllers
             {
                 user.Pasword = changePassoworddto.Newpassword;
                 _UnitOfWork.SaveChanges();
-
             }
-
             var response = new
             {
                 message = "Password has been Reset Successfully!!!"
@@ -254,29 +246,13 @@ namespace E_Learning.API.Controllers
 
             return Ok(response);
 
-
-            //var state = _UserManger.ChangePassword(changePassoworddto);
-            //if (state < 0)
-            //{
-            //    return BadRequest("data are wrong ");
-            //}
-            //if (state == 0)
-            //{
-            //    return Ok("nothing change  ");
-            //}
-            //return Ok(state);
-
         }
 
 
         [HttpPut]
         [Route("UpdateUser")]
-
         public IActionResult UpdateUser(GetUserDto  getUserDto)
         {
-
-
-
             var state = _UserManger.UpdateUser(getUserDto);
             if (state < 0)
             {

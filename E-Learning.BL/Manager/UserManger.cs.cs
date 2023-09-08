@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using E_Learning.BL.DTO;
 using E_Learning.DAL;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 
@@ -14,10 +15,13 @@ namespace E_Learning.BL
     public class UserManger : IUserManger
     {
         private readonly IUnitOfWork _UnitOfWork;
+        private readonly UserManager<User> _userManager;
 
-        public UserManger(IUnitOfWork unitOfWork)
+        public UserManger(IUnitOfWork unitOfWork , UserManager<User> userManager)
         {
             _UnitOfWork = unitOfWork;
+            _userManager = userManager;
+
         }
 
         public Returnofreg AddStudent(AddStudentDto addStudentDto)
@@ -171,9 +175,6 @@ namespace E_Learning.BL
                     userYear = new UserYearDTO { Id = x.Yearid, Name = x.Year?.Name, Classes = x.Year?.Classes.Select(z => new UserClassDTO { Id = z.Id, Name = z.Name }).ToList() }
                 }).ToList();
             }
-
-
-
             else if (!statue)
             {
                 return _UnitOfWork._Userrepository.GetNonAtiveStudents().Select(x => new GetStudentforMangmentdto
@@ -192,8 +193,6 @@ namespace E_Learning.BL
             }
 
             return null;
-
-
         }
 
         public ICollection<GetStudentforMangmentdto> GetALLStudentsByClass(int classid)
@@ -201,13 +200,11 @@ namespace E_Learning.BL
             var x = _UnitOfWork._Userrepository.GetStudentsByClass(classid).Users.Select(x => new GetStudentforMangmentdto
             {
                 Active = x.Active,
-                Id = x.Id
-                          ,
+                Id = x.Id,
                 Name = $"{x.FirstName}  {x.SecondName} {x.LastName}",
                 ParentPhoneNumber = x.ParentPhoneNumber,
                 Pasword = x.Pasword,
-                PhoneNumber = x.StudentPhoneNumber
-                            ,
+                PhoneNumber = x.StudentPhoneNumber,
                 Username = x.Username,
                 userYear = new UserYearDTO { Id = x.Yearid, Name = x.Year?.Name, Classes = x.Classes.Where(x => x.Id == classid).Select(z => new UserClassDTO { Id = z.Id, Name = z.Name }).ToList() }
             }).ToList();
@@ -227,6 +224,17 @@ namespace E_Learning.BL
                 return -1;
             }
 
+            User? user1 =  _userManager.FindByIdAsync(user.Id).Result;
+            if (user is null)
+            {
+                return -1;
+            }
+            var token =  _userManager.GeneratePasswordResetTokenAsync(user1).Result;
+            var result =  _userManager.ResetPasswordAsync(user1, token, user.password).Result;
+            if (!result.Succeeded)
+            {
+                return 1;
+            }
 
             Update.FirstName = user.FirstName;
             Update.SecondName = user.SecondName;
@@ -243,8 +251,9 @@ namespace E_Learning.BL
             return _UnitOfWork.SaveChanges();
         }
 
-        public UserHomeDto userHome(string id)
 
+
+        public UserHomeDto userHome(string id)
         {
             var user = _UnitOfWork._Userrepository.GetUser(id);
             var classes = _UnitOfWork.classrepository.GetAllByYear((int)user.Yearid).Where(x => !(user.Classes.Contains(x) || user.UserClassRequists.Select(x => x.Class).Contains(x)));
