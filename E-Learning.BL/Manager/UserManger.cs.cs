@@ -131,7 +131,48 @@ namespace E_Learning.BL
 
 
 
+        public GetUserDto GetUser(String id)
+        {
 
+         var User=     _UnitOfWork._Userrepository.GetUser(id);
+
+            if (User.Role == Role.Student)
+            {
+                return new GetUserDto
+                {
+                    FirstName = User.FirstName,
+                    Id = User.Id,
+                    LastName = User.LastName,
+
+                    SecondName = User.SecondName,
+                    ParentPhoneNumber = User.ParentPhoneNumber,
+                    password = User.Pasword,
+                    Username = User.Username,
+                    PhoneNumber = User.StudentPhoneNumber
+                };
+            }
+            if(User.Role== Role.Sadmin || User.Role== Role.Admin)
+            {
+
+                return new GetUserDto
+                {
+                    FirstName = User.FirstName,
+                    Id = User.Id,
+                    SecondName = User.SecondName,
+                    password = User.Pasword,
+                    Username = User.Username,
+                    PhoneNumber = User.StudentPhoneNumber
+                };
+
+            }
+
+            else
+            {
+                return null;
+            }
+
+        }
+             
         public int DeleteUser(string userid)
         {
             int E=0 ;

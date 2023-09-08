@@ -31,11 +31,15 @@ namespace E_Learning.BL
             return _UnitOfWork.classrepository.GetAllByYear(yearid).Select(x => new UserClassDTO { Id = x.Id, Name = x.Name }).ToList();
         }
 
-        public ICollection<GetUserCLassRequistsdto> GetAllClassesRequists( int Classid)
+        public GetCLassdto GetAllClassesRequists( int Classid)
         {
 
+            var clas = _UnitOfWork.classrepository.getbyid(Classid);
 
-            return _UnitOfWork.classrepository.GetUserClassRequists(Classid).Select(x => new GetUserCLassRequistsdto { classid = (int)x.Classid, Userid = x.Userid, Classname = x.Class.Name, UserName = $" {x.user.FirstName}  {x.user.SecondName}  {x.user.LastName}" }).ToList();
+            var userrequset =  _UnitOfWork.classrepository.GetUserClassRequists(Classid).Select(x => new GetUserCLassRequistsdto { classid = (int)x.Classid, Userid = x.Userid,  UserName = $" {x.user.FirstName}  {x.user.SecondName}  {x.user.LastName}" }).ToList();
+            return new GetCLassdto { ClassName = clas.Name, getUserCLassRequistsdtos = userrequset };
+        
+        
         }
 
         public ICollection<UserYearDTO> GetAllYears()

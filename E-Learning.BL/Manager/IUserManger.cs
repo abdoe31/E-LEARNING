@@ -19,7 +19,7 @@ namespace E_Learning.BL
         int DeleteUser(string userid);
 
         int UpdateUser(GetUserDto user);
-
+        GetUserDto GetUser(string id);
         public ICollection<getAdminsdto> GetAllAdmins();
         public int ChangePassword(ChangePassoworddto user);
 
