@@ -94,9 +94,11 @@ namespace E_Learning.DAL
 
         public int DeleteStudent(string user)
         {
+           var U =   _eLearningContext.Users.Where(x => x.Id == user).FirstOrDefault();
 
 
-            return _eLearningContext.Users.Where(x => x.Id == user).ExecuteDelete();
+              _eLearningContext.Users.Remove(U);
+            return _eLearningContext.SaveChanges();
 
         }
     }
