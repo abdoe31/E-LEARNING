@@ -301,7 +301,7 @@ namespace E_Learning.API.Controllers
         [HttpDelete("DeleteUser/{userid}")]
         public async  Task<IActionResult> DeleteUser(string userid)
         {
-          var user  =  _UnitOfWork._Userrepository.GetUser(userid);
+        //  var user  =  _UnitOfWork._Userrepository.GetUser(userid);
           //  await _userManager.DeleteAsync(user);
 
             return Ok(_UserManger.DeleteUser(userid));
