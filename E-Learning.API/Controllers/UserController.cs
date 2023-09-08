@@ -59,7 +59,7 @@ namespace E_Learning.API.Controllers
                 Active = addStudentDto.Active,
                 FirstName = addStudentDto.FirstName,
                 LastName = addStudentDto.LastName,
-                UserPhoneNumber = addStudentDto.PhoneNumber,
+                StudentPhoneNumber = addStudentDto.PhoneNumber,
                 SecondName = addStudentDto.SecondName,
                 ParentPhoneNumber = addStudentDto.ParentPhoneNumber,
                 Pasword = pass,

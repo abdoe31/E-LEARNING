@@ -16,7 +16,7 @@ public partial class User : IdentityUser
     public string? SecondName { get; set; } = string.Empty; 
     public string? LastName { get; set; } = string.Empty;
 
-    public string? UserPhoneNumber { get; set; } = string.Empty;
+    public string? StudentPhoneNumber { get; set; } = string.Empty;
 
     public string? ParentPhoneNumber { get; set; } = string.Empty;
 
